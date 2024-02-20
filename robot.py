@@ -43,6 +43,10 @@ def control(motor,controller,input,invert=False):
 		scaledInput=scaledInput*1
 	motor.set(scaledInput)
 
+def control2(motor1,motor2,controller,input,invert=False):
+	control(motor1,controller,input,invert)
+	control(motor2,controller,input,invert)
+
 def controlDrive(drive,controller):
 	scaledInput=controller.getX()
 	scaledInput=scaledInput*scaledInput
@@ -79,7 +83,16 @@ class MyRobot(wpilib.TimedRobot):
 		self.backRightMotor.getEncoder().setPosition(0.0)
 
 		#init other motors
-		#TODO implement other motors
+		#replace 0 with the ID for each motor used
+		#for unused motors, leave ID as 0
+		self.armMotor1=CanMotor(0)
+		self.armMotor2=CanMotor(0)
+		self.intakeMotor1=CanMotor(0)
+		self.intakeMotor2=CanMotor(0)
+		self.feederMotor1=CanMotor(0)
+		self.feederMotor2=CanMotor(0)
+		self.shooterMotor1=CanMotor(0)
+		self.shooterMotor2=CanMotor(0)
 
 	def autonomousInit(self):
 		"""This function is run once each time the robot enters autonomous mode."""
