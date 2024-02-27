@@ -38,7 +38,7 @@ class CanMotor:
 
 def control(motor,controller,input,invert=False):
 	scaledInput=eval(controller+".get"+input+"()")
-	scaledInput=scaledInput*scaledInput
+	scaledInput=scaledInput*abs(scaledInput)
 	if invert:
 		scaledInput=scaledInput*1
 	motor.set(scaledInput)
@@ -49,13 +49,13 @@ def control2(motor1,motor2,controller,input,invert=False):
 
 def controlDrive(drive,controller):
 	scaledInput=controller.getX()
-	scaledInput=scaledInput*scaledInput
+	scaledInput=scaledInput*abs(scaledInput)
 	x=scaledInput
 	scaledInput=controller.getY()
-	scaledInput=scaledInput*scaledInput
+	scaledInput=scaledInput*abs(scaledInput)
 	y=scaledInput
 	scaledInput=controller.getZ()
-	scaledInput=scaledInput*scaledInput
+	scaledInput=scaledInput*abs(scaledInput)
 	z=scaledInput
 	drive.driveCartesian(x,y,z)
 
